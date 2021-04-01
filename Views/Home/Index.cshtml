@@ -1,0 +1,66 @@
+﻿@model CookieDisclaimer.Models.CookieDisclamerViewModel;
+@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script>
+
+<link rel="stylesheet" href="~/css/index.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+@if (!Model.IsAccepted)
+{
+<div class="container">
+    <div class="policy float-right row-5 border1" onload="GDPR()" id="hide">
+        <a class="btn btn-secondary btn-lg btn1" id="btn2">X</a>
+        <p>
+            We use cookies to give you the
+            best online experience.
+        </p>
+        <p>
+            By using our website, you agree
+            to our <a onclick="openInNewTab()" href="#">privacy policy</a> ofUFX Europe
+        </p>
+        <p>(Reliantco Investment Ltd) regulated by the </p>
+        <p>Cyprus Securities Exchange Comission</p>
+        <a onclick="RedirectToAction()" class="btn btn-warning btn-lg btn1" id="btn1">Accept and close</a>
+    </div>
+</div>
+}
+
+
+@*<p>This example demonstrates how to assign an "onload" event to an iframe element.</p>
+
+    <iframe onload="myFunction()" src="/default.asp"></iframe>
+
+    <p id="demo"></p>*@
+
+
+@*<script>
+        function myFunction() {
+            document.getElementById("demo").innerHTML = "<div class='policy' id='hide'><p>We use cookies to give you the best online experience</p><p>By using our website you agree<a href='https://www.cookiebot.com/en/privacy-policy-generator-gdpr/?gclid=Cj0KCQjw9YWDBhDyARIsADt6sGaM6IFWoCIgRjFtWD3wISRjSvoLrt7Q8baR5fOGLi2r21FVpB0iAVsaAuc5EALw_wcB'>privacy policy </p><a onclick='RedirectToAction()' class='btn btn-primary btn-lg'>AcceptAndClose</a><a class='btn btn-primary btn-lg btn1'>X</a></div>";
+        }
+    </script>*@
+
+<script>
+    function RedirectToAction() {
+        window.location.href = '/Home/Accept';
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".btn1").click(function () {
+            $(document).find("#hide").hide();
+        });
+    });
+</script>
+<script>
+    function openInNewTab() {
+        var win = window.open('https://www.cookiebot.com/en/privacy-policy-generator-gdpr/?gclid=Cj0KCQjw9YWDBhDyARIsADt6sGaM6IFWoCIgRjFtWD3wISRjSvoLrt7Q8baR5fOGLi2r21FVpB0iAVsaAuc5EALw_wcB', '_blank');
+        win.focus();
+    }
+</script>

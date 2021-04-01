@@ -1,0 +1,177 @@
+﻿<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script>
+
+<link rel="stylesheet" href="~/css/index.css" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        input[type=text], select, textarea {
+            width: 50%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+        }
+
+        .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        @@media screen and (max-width: 600px) {
+            .col-25, .col-75, input[type=submit] {
+                width: 50%;
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <div class="container">
+        <form action="/action_page.php">
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">First Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Last Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="country">Country</label>
+                </div>
+                <div class="col-75">
+                    <select id="country" name="country">
+                        <option value="australia">Australia</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="subject">Subject</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
+
+
+@if (!Model.IsAccepted)
+{
+    <div class="container">
+        <div class="policy float-right row-5 border1" onload="GDPR()" id="hide">
+            <a class="btn btn-secondary btn-lg btn1" id="btn2">X</a>
+            <p>
+                We use cookies to give you the
+                best online experience.
+            </p>
+            <p>
+                By using our website, you agree
+                to our <a onclick="openInNewTab()" href="#">privacy policy</a> ofUFX Europe
+            </p>
+            <p>(Reliantco Investment Ltd) regulated by the </p>
+            <p>Cyprus Securities Exchange Comission</p>
+            <a onclick="RedirectToAction()" class="btn btn-warning btn-lg btn1" id="btn1">Accept and close</a>
+
+        </div>
+        </div>
+}
+
+
+ @*<p>This example demonstrates how to assign an "onload" event to an iframe element.</p>
+
+            <iframe onload="myFunction()" src="/default.asp"></iframe>
+
+            <p id="demo"></p>*@
+
+@*<script>
+                function myFunction() {
+                    document.getElementById("demo").innerHTML = "<div class='policy' id='hide'><p>We use cookies to give you the best online experience</p><p>By using our website you agree<a href='https://www.cookiebot.com/en/privacy-policy-generator-gdpr/?gclid=Cj0KCQjw9YWDBhDyARIsADt6sGaM6IFWoCIgRjFtWD3wISRjSvoLrt7Q8baR5fOGLi2r21FVpB0iAVsaAuc5EALw_wcB'>privacy policy </p><a onclick='RedirectToAction()' class='btn btn-primary btn-lg'>AcceptAndClose</a><a class='btn btn-primary btn-lg btn1'>X</a></div>";
+                }
+            </script>*@
+        <script>
+            function openInNewTab() {
+                var win = window.open('https://www.cookiebot.com/en/privacy-policy-generator-gdpr/?gclid=Cj0KCQjw9YWDBhDyARIsADt6sGaM6IFWoCIgRjFtWD3wISRjSvoLrt7Q8baR5fOGLi2r21FVpB0iAVsaAuc5EALw_wcB', '_blank');
+                win.focus();
+            }
+        </script>
+        <script>
+            function RedirectToAction() {
+                window.location.href = '/Home/Accept';
+            }
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $(".btn1").click(function () {
+                    $(document).find("#hide").hide();
+                });
+            });
+        </script>
